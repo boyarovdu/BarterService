@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.Web", "BarterService\BarterService.Web.csproj", "{035D3ADB-2503-430C-91D5-812A4DB97EDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasrterService.Model", "BasrterService.Model\BasrterService.Model.csproj", "{0984D8D7-68F8-43CD-AE80-FC45F462690D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.DataAccess", "BarterService.DataAccess\BarterService.DataAccess.csproj", "{F98F7F82-C99C-4E4F-9306-D79DA9EBED64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.Business", "BarterService.Business\BarterService.Business.csproj", "{3A55503E-6294-4848-A3D1-B12FBA8F99D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterServiceTests", "BarterServiceTests\BarterServiceTests.csproj", "{0E650F40-5EB3-4E8F-9433-C9F0B8EADDC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{035D3ADB-2503-430C-91D5-812A4DB97EDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{035D3ADB-2503-430C-91D5-812A4DB97EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{035D3ADB-2503-430C-91D5-812A4DB97EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{035D3ADB-2503-430C-91D5-812A4DB97EDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0984D8D7-68F8-43CD-AE80-FC45F462690D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0984D8D7-68F8-43CD-AE80-FC45F462690D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0984D8D7-68F8-43CD-AE80-FC45F462690D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0984D8D7-68F8-43CD-AE80-FC45F462690D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F98F7F82-C99C-4E4F-9306-D79DA9EBED64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F98F7F82-C99C-4E4F-9306-D79DA9EBED64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F98F7F82-C99C-4E4F-9306-D79DA9EBED64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F98F7F82-C99C-4E4F-9306-D79DA9EBED64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A55503E-6294-4848-A3D1-B12FBA8F99D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A55503E-6294-4848-A3D1-B12FBA8F99D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A55503E-6294-4848-A3D1-B12FBA8F99D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A55503E-6294-4848-A3D1-B12FBA8F99D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E650F40-5EB3-4E8F-9433-C9F0B8EADDC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E650F40-5EB3-4E8F-9433-C9F0B8EADDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E650F40-5EB3-4E8F-9433-C9F0B8EADDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E650F40-5EB3-4E8F-9433-C9F0B8EADDC3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
