@@ -1,5 +1,4 @@
-﻿using BarterService.Common;
-using BarterService.DataAccess.Configuration;
+﻿using BarterService.DataAccess.Configuration;
 using Microsoft.Practices.Unity;
 
 namespace Initialization
@@ -8,7 +7,7 @@ namespace Initialization
     {
         protected override void Initialize()
         {
-            AppContainer.Current.AddExtension(new DataAccessConfigurationExtension());
+            Container.AddExtension(new DataAccessConfigurationExtension());
         }
     }
 }

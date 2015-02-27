@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace BarterService.DataAccess.Common
 {
@@ -12,6 +13,6 @@ namespace BarterService.DataAccess.Common
 
         void Insert(TEntity entity);
 
-        IList<TEntity> All();
+        IQueryable<TEntity> All();
     }
 }

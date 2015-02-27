@@ -1,14 +1,20 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Unity;
 
 namespace BarterService.Common
 {
     public class AppContainer
     {
-        static AppContainer()
+        public IUnityContainer Current
         {
-            Current = new UnityContainer();
+            get { return ServiceLocator.Current.GetInstance<IUnityContainer>(); }
         }
 
-        public static IUnityContainer Current { get; set; }
+        public static void InitServices(UnityContainerExtension initialization)
+        {
+            var container = new UnityContainer();
+            container.AddExtension(initialization);
+            ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(container));
+        }
     }
 }

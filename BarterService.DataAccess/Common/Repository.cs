@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Validation;
+﻿using System.Data.Entity;
 using System.Linq;
 using BasrterService.Model.Common;
+using Microsoft.Practices.Unity;
 
 namespace BarterService.DataAccess.Common
 {
@@ -11,11 +9,15 @@ namespace BarterService.DataAccess.Common
     {
         private readonly IContext _context;
         private IDbSet<T> _entities;
-        string _errorMessage = string.Empty;
 
-        public Repository(IContext context)
+        public Repository([Dependency]IContext context)
         {
             _context = context;
+        }
+
+        private IDbSet<T> Entities
+        {
+            get { return _entities ?? (_entities = _context.Set<T>()); }
         }
 
         public T GetById(long id)
@@ -25,90 +27,45 @@ namespace BarterService.DataAccess.Common
 
         public void Insert(T entity)
         {
-            try
-            {
-                if (entity == null)
-                {
-                    throw new ArgumentNullException("entity");
-                }
-                Entities.Add(entity);
-                _context.Save();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        _errorMessage += string.Format("Property: {0} Error: {1}",
-                        validationError.PropertyName, validationError.ErrorMessage) + Environment.NewLine;
-                    }
-                }
-                throw new Exception(_errorMessage, dbEx);
-            }
+            Entities.Add(entity);
+            _context.Save();
         }
 
         public void Update(T entity)
         {
-            try
-            {
-                if (entity == null)
-                {
-                    throw new ArgumentNullException("entity");
-                }
-                _context.Save();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        _errorMessage += Environment.NewLine + string.Format("Property: {0} Error: {1}",
-                        validationError.PropertyName, validationError.ErrorMessage);
-                    }
-                }
+            _context.Save();
+        }
 
-                throw new Exception(_errorMessage, dbEx);
-            }
+        public virtual IQueryable<T> All()
+        {
+            return Entities;
         }
 
         public void Delete(T entity)
         {
-            try
-            {
-                if (entity == null)
-                {
-                    throw new ArgumentNullException("entity");
-                }
+            //try
+            //{
+            //    if (entity == null)
+            //    {
+            //        throw new ArgumentNullException("entity");
+            //    }
 
                 Entities.Remove(entity);
                 _context.Save();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
+            //}
+            //catch (DbEntityValidationException dbEx)
+            //{
 
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        _errorMessage += Environment.NewLine + string.Format("Property: {0} Error: {1}",
-                        validationError.PropertyName, validationError.ErrorMessage);
-                    }
-                }
-                throw new Exception(_errorMessage, dbEx);
-            }
-        }
-
-        public virtual IList<T> All()
-        {
-            return Entities.ToList();
-        }
-
-        private IDbSet<T> Entities
-        {
-            get { return _entities ?? (_entities = _context.Set<T>()); }
+            //    foreach (var validationErrors in dbEx.EntityValidationErrors)
+            //    {
+            //        foreach (var validationError in validationErrors.ValidationErrors)
+            //        {
+            //            _errorMessage += Environment.NewLine + string.Format("Property: {0} Error: {1}",
+            //            validationError.PropertyName, validationError.ErrorMessage);
+            //        }
+            //    }
+            //    throw new Exception(_errorMessage, dbEx);
+            //}
         }
     }
 }

@@ -20,11 +20,5 @@ namespace BasrterService.Model.Objects
         public Account ToAccount{ 
             get { return ToUser.Account; }
         }
-
-        public bool Validate(out string validationError)
-        {
-            validationError = "Error occured in deal";
-            return true;
-        }
     }
 }
