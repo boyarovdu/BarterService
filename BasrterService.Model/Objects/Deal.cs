@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using BasrterService.Model.Common;
 
 namespace BasrterService.Model.Objects
 {
-    public class Deal : BaseEntity
+    public class Deal : BaseEntity, IValidatableObject
     {
         public User FromUser { get; set; }
 
@@ -13,12 +15,19 @@ namespace BasrterService.Model.Objects
 
         public DateTime Date { get; set; }
 
-        public Account FromAccount {
+        public Account FromAccount
+        {
             get { return FromUser.Account; }
         }
 
-        public Account ToAccount{ 
+        public Account ToAccount
+        {
             get { return ToUser.Account; }
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            return null;
         }
     }
 }

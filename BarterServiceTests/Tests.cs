@@ -4,6 +4,7 @@ using BarterService.Common;
 using BarterService.DataAccess.Common;
 using BasrterService.Model.Objects;
 using Initialization;
+using Initialization.Common;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Practices.Unity;

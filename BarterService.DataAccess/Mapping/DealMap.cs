@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using BasrterService.Model.Objects;
 
-namespace BarterService.DataAccess.Mappings
+namespace BarterService.DataAccess.Mapping
 {
     public class DealMap : EntityTypeConfiguration<Deal>
     {

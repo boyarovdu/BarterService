@@ -4,9 +4,11 @@ using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
 using BasrterService.Model.Common;
+using BasrterService.Model.Objects;
 
 namespace BarterService.DataAccess.Common
 {
@@ -60,6 +62,24 @@ namespace BarterService.DataAccess.Common
                 modelBuilder.Configurations.Add(configurationInstance);
             }
             base.OnModelCreating(modelBuilder);
+        }
+
+        protected override DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items)
+        {
+            var result = new DbEntityValidationResult(entityEntry, new List<DbValidationError>());
+            if (entityEntry.Entity is Deal && entityEntry.State == EntityState.Added)
+            {
+                var deal = entityEntry.Entity as Deal;
+                //check for uniqueness of post title 
+                if (Set<Deal>().Any(d => d.Id == deal.Id))
+                {
+                    result.ValidationErrors.Add(new DbValidationError("Title", "Post title must be unique."));
+                }
+            }
+
+            return result.ValidationErrors.Any() 
+                ? result 
+                : base.ValidateEntity(entityEntry, items);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using BarterService.DataAccess.Configuration;
 using Microsoft.Practices.Unity;
 
-namespace Initialization
+namespace Initialization.Common
 {
     public class InitializationContainerExtension : UnityContainerExtension
     {
