@@ -43,13 +43,13 @@ namespace BarterService.DataAccess.Common
 
         public string Save()
         {
-            string validationErrors;
-            if (ValidateBeforeSave(out validationErrors))
-            {
+            //string validationErrors;
+            //if (ValidateBeforeSave(out validationErrors))
+            //{
                 SaveChanges();
                 return "";
-            }
-            return "Data Not Saved due to Validation Errors: " + validationErrors;
+            //}
+            //return "Data Not Saved due to Validation Errors: " + validationErrors;
         }
 
         public IEnumerable<T> ManagedEntites<T>()

@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.Business", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterServiceTests", "BarterServiceTests\BarterServiceTests.csproj", "{0E650F40-5EB3-4E8F-9433-C9F0B8EADDC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.Common", "BarterService.Common\BarterService.Common.csproj", "{A90D165C-AA3B-4A0E-ACB4-EC9B0712D9C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.Initialization", "Initialization\BarterService.Initialization.csproj", "{5C183FBD-DD6B-47CA-BAD3-04BD8FEB47AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{0E650F40-5EB3-4E8F-9433-C9F0B8EADDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E650F40-5EB3-4E8F-9433-C9F0B8EADDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E650F40-5EB3-4E8F-9433-C9F0B8EADDC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A90D165C-AA3B-4A0E-ACB4-EC9B0712D9C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A90D165C-AA3B-4A0E-ACB4-EC9B0712D9C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A90D165C-AA3B-4A0E-ACB4-EC9B0712D9C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A90D165C-AA3B-4A0E-ACB4-EC9B0712D9C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C183FBD-DD6B-47CA-BAD3-04BD8FEB47AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C183FBD-DD6B-47CA-BAD3-04BD8FEB47AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C183FBD-DD6B-47CA-BAD3-04BD8FEB47AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C183FBD-DD6B-47CA-BAD3-04BD8FEB47AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

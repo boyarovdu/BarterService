@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.SqlClient;
 using BarterService.DataAccess.Common;
@@ -10,21 +11,13 @@ namespace BarterService.DataAccess.Configuration
     public class EfRepositoryExtension : UnityContainerExtension, IEfRepositoryExtension
     {
         //private ContextBuilder<ObjectContext> _builder;
+        private DbModelBuilder _modelBuilder;
         private SqlConnection _connection;
 
         protected override void Initialize()
         {
-            //_builder = new ContextBuilder<ObjectContext>();
-            //register the builder instance as a singleton, this will hold all of our 
-            //mapping information for the duration of our application as it creates 
-            //new data contexts
-            //Container.RegisterInstance("builder", _builder,
-            //                           new ContainerControlledLifetimeManager());
-
-            //Register Repo & UOW. Those these are transient instances, they both take
-            //a ctor dependency on the ObjectContext which has its lifetime controlled
-            //by the Extension. E.g., for an Http current request, all repository and
-            //UOW will use the same context/transaction
+            _modelBuilder = new DbModelBuilder();//ContextBuilder<ObjectContext>();
+            Container.RegisterInstance("builder", _modelBuilder, new ContainerControlledLifetimeManager());
             Container.RegisterType(typeof(IEntityRepository<>), typeof(Repository<>));
             Container.RegisterType<IUnitOfWork, UnitOfWork>();
         }
@@ -44,13 +37,8 @@ namespace BarterService.DataAccess.Configuration
 
         public IEfRepositoryExtension ConfigureEntity<T>(EntityTypeConfiguration<T> config, string setName) where T : class 
         {
-            //add the configuration
-            //_builder.Configurations.Add(config);
-            ////register the set metadata
-            //_builder.RegisterSet<T>(setName);
-            //return this;
-
-            throw  new NotImplementedException();
+            _modelBuilder.Configurations.Add(config);
+            return this;
         }
 
         public IEfRepositoryExtension WithContextLifetime(LifetimeManager lifetimeManager)
@@ -60,27 +48,11 @@ namespace BarterService.DataAccess.Configuration
             //         .RegisterFactory<IObjectContext>(x =>
             //             ContextResolver(x, lifetimeManager, _connection));
 
-            //return this;
-
-            throw new NotImplementedException();
+            return this;
         }
 
         //factory func to build context with given lifetime & connection
         static readonly Func<IUnityContainer, LifetimeManager, SqlConnection, object>
-            ContextResolver = (c, l, s) =>
-            {
-                //var context = l.GetValue();
-                //if (context == null)
-                //{
-                //    var builder = c.Resolve<ContextBuilder<ObjectContext>>("builder");
-                //    var newContext = builder.Create(s);
-                //    context = new ObjectContextAdapter(newContext);
-                //    l.SetValue(context);
-                //}
-
-                //return context;
-
-                throw new NotImplementedException();
-            };
+            ContextResolver = (c, l, s) => null;
     }
 }
