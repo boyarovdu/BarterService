@@ -41,5 +41,17 @@ namespace BarterServiceTests
             Assert.IsNotNull(unitOfWork);
             Assert.IsNotNull(repo);
         }
+
+        [TestMethod]
+        public void Tes3()
+        {
+            var unitOfWork = Container.Resolve<IUnitOfWork>();
+            var repo = Container.Resolve<IEntityRepository<Deal>>();
+
+            repo.Insert(new Deal());
+
+            Assert.IsNotNull(unitOfWork);
+            Assert.IsNotNull(repo);
+        }
     }
 }

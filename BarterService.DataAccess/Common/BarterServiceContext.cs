@@ -7,6 +7,8 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
+using BarterService.DataAccess.Validation;
+using BarterService.DataAccess.Validation.Common;
 using BasrterService.Model.Common;
 using BasrterService.Model.Objects;
 
@@ -52,10 +54,7 @@ namespace BarterService.DataAccess.Common
             //        .Where(p => p.Name == "Id")
             //        .Configure(p => p.IsKey()); 
 
-            var typesToRegister = Assembly.GetExecutingAssembly().GetTypes()
-           .Where(type => !String.IsNullOrEmpty(type.Namespace))
-           .Where(type => type.BaseType != null && type.BaseType.IsGenericType
-                && type.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>));
+            var typesToRegister = GetTypesOf(typeof(EntityTypeConfiguration<>));
             foreach (var type in typesToRegister)
             {
                 dynamic configurationInstance = Activator.CreateInstance(type);
@@ -64,21 +63,34 @@ namespace BarterService.DataAccess.Common
             base.OnModelCreating(modelBuilder);
         }
 
+        private static IEnumerable<Type> GetTypesOf(Type type)
+        {
+            var types = Assembly.GetExecutingAssembly().GetTypes()
+                .Where(t => !String.IsNullOrEmpty(t.Namespace))
+                .Where(t =>
+                {
+                    return t.BaseType != null
+                           && t.BaseType.IsGenericType
+                           && (t.BaseType.GetGenericTypeDefinition() == type || t.BaseType == type);
+                });
+            return types;
+        }
+
         protected override DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items)
         {
-            var result = new DbEntityValidationResult(entityEntry, new List<DbValidationError>());
-            if (entityEntry.Entity is Deal && entityEntry.State == EntityState.Added)
-            {
-                var deal = entityEntry.Entity as Deal;
-                //check for uniqueness of post title 
-                if (Set<Deal>().Any(d => d.Id == deal.Id))
-                {
-                    result.ValidationErrors.Add(new DbValidationError("Title", "Post title must be unique."));
-                }
-            }
+            var validatorType = GetTypesOf(typeof(EntityValidator<>)
+                .MakeGenericType(entityEntry.Entity.GetType()))
+                .FirstOrDefault();
 
-            return result.ValidationErrors.Any() 
-                ? result 
+            if (validatorType == null) return base.ValidateEntity(entityEntry, items);
+            
+            var validator = (EntityValidator)Activator.CreateInstance(validatorType);
+            validator.Validate(entityEntry, items);
+
+            var result = new DbEntityValidationResult(entityEntry, validator.Errors);
+
+            return result.ValidationErrors.Any()
+                ? result
                 : base.ValidateEntity(entityEntry, items);
         }
     }

@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Data.Entity.Infrastructure;
+using BarterService.DataAccess.Validation.Common;
+using BasrterService.Model.Objects;
 
 namespace BarterService.DataAccess.Validation
 {
-    public class DealValidator  
+    internal class DealValidator : EntityValidator<Deal>
     {
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        //{
-            
-        //}
+        public override void Validate(DbEntityEntry entityEntry, IDictionary<object, object> items)
+        {
+            AddError("Test", "Test message");
+        }
     }
 }
