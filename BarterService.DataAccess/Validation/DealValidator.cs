@@ -9,7 +9,7 @@ namespace BarterService.DataAccess.Validation
     {
         public override void Validate(DbEntityEntry entityEntry, IDictionary<object, object> items)
         {
-            AddError("Test", "Test message");
+            //AddError("Test", "Test message");
         }
     }
 }

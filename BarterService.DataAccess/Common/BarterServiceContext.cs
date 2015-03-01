@@ -16,11 +16,17 @@ namespace BarterService.DataAccess.Common
     {
         public const string ConnectionString = "name=BarterService.DbConnection.Dev";
 
-        public BarterServiceContext()
+        public BarterServiceContext(bool useStoredProcedures)
             : base(ConnectionString)
         {
+            UseStoredProcedures = useStoredProcedures;
             Configuration.LazyLoadingEnabled = true;
             Database.Initialize(false);
+        }
+
+        public BarterServiceContext()
+            : this(false)
+        {           
         }
 
         public ObjectContext Core
@@ -50,6 +56,17 @@ namespace BarterService.DataAccess.Common
             OverrideConventions(modelBuilder);
 
             MapEntities(modelBuilder);
+
+            if (UseStoredProcedures)
+            {
+                //modelBuilder
+                //    .Entity<Deal>()
+                //    .MapToStoredProcedures(c => c.Delete(dc => dc.HasName("delate_deal"))
+                //        .Insert(ic => ic.HasName("insert_deal"))
+                //        .Update(uc => uc.HasName("update_deal")));
+            }
+           
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -63,7 +80,7 @@ namespace BarterService.DataAccess.Common
 
         private void MapEntities(DbModelBuilder modelBuilder)
         {
-            var typesToRegister = GetTypesOf(typeof (EntityTypeConfiguration<>));
+            var typesToRegister = GetTypesOf(typeof(EntityTypeConfiguration<>));
             foreach (var type in typesToRegister)
             {
                 dynamic configurationInstance = Activator.CreateInstance(type);
@@ -91,7 +108,7 @@ namespace BarterService.DataAccess.Common
                 .FirstOrDefault();
 
             if (validatorType == null) return base.ValidateEntity(entityEntry, items);
-            
+
             var validator = (EntityValidator)Activator.CreateInstance(validatorType);
             validator.Validate(entityEntry, items);
 
@@ -101,5 +118,7 @@ namespace BarterService.DataAccess.Common
                 ? result
                 : base.ValidateEntity(entityEntry, items);
         }
+
+        public bool UseStoredProcedures { get; set; }
     }
 }
