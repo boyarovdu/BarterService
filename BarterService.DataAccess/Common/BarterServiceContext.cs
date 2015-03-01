@@ -7,10 +7,8 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
-using BarterService.DataAccess.Validation;
 using BarterService.DataAccess.Validation.Common;
 using BasrterService.Model.Common;
-using BasrterService.Model.Objects;
 
 namespace BarterService.DataAccess.Common
 {
@@ -49,18 +47,28 @@ namespace BarterService.DataAccess.Common
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            OverrideConventions(modelBuilder);
+
+            MapEntities(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+        }
+
+        private static void OverrideConventions(DbModelBuilder modelBuilder)
+        {
             // Conventions override
             //modelBuilder.Properties()
-            //        .Where(p => p.Name == "Id")
-            //        .Configure(p => p.IsKey()); 
+            //    .Where(p => p.Name == "Id")
+            //    .Configure(p => p.IsKey());
+        }
 
-            var typesToRegister = GetTypesOf(typeof(EntityTypeConfiguration<>));
+        private void MapEntities(DbModelBuilder modelBuilder)
+        {
+            var typesToRegister = GetTypesOf(typeof (EntityTypeConfiguration<>));
             foreach (var type in typesToRegister)
             {
                 dynamic configurationInstance = Activator.CreateInstance(type);
                 modelBuilder.Configurations.Add(configurationInstance);
             }
-            base.OnModelCreating(modelBuilder);
         }
 
         private static IEnumerable<Type> GetTypesOf(Type type)
