@@ -7,6 +7,7 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
+using BarterService.DataAccess.Extensions;
 using BarterService.DataAccess.Validation.Common;
 using BasrterService.Model.Common;
 
@@ -16,17 +17,17 @@ namespace BarterService.DataAccess.Common
     {
         public const string ConnectionString = "name=BarterService.DbConnection.Dev";
 
-        public BarterServiceContext(bool useStoredProcedures)
+        public BarterServiceContext(bool useCrudProcedures)
             : base(ConnectionString)
         {
-            UseStoredProcedures = useStoredProcedures;
+            UseCrudProcedures = useCrudProcedures;
             Configuration.LazyLoadingEnabled = true;
             Database.Initialize(false);
         }
 
         public BarterServiceContext()
             : this(false)
-        {           
+        {
         }
 
         public ObjectContext Core
@@ -57,15 +58,15 @@ namespace BarterService.DataAccess.Common
 
             MapEntities(modelBuilder);
 
-            if (UseStoredProcedures)
+            if (UseCrudProcedures)
             {
-                //modelBuilder
-                //    .Entity<Deal>()
-                //    .MapToStoredProcedures(c => c.Delete(dc => dc.HasName("delate_deal"))
-                //        .Insert(ic => ic.HasName("insert_deal"))
-                //        .Update(uc => uc.HasName("update_deal")));
+                //modelBuilder.
+                //.Entity<Deal>()
+                //.MapToStoredProcedures(c => c.Delete(dc => dc.HasName("delate_deal"))
+                //    .Insert(ic => ic.HasName("insert_deal"))
+                //    .Update(uc => uc.HasName("update_deal")));
             }
-           
+
 
             base.OnModelCreating(modelBuilder);
         }
@@ -92,12 +93,9 @@ namespace BarterService.DataAccess.Common
         {
             var types = Assembly.GetExecutingAssembly().GetTypes()
                 .Where(t => !String.IsNullOrEmpty(t.Namespace))
-                .Where(t =>
-                {
-                    return t.BaseType != null
-                           && t.BaseType.IsGenericType
-                           && (t.BaseType.GetGenericTypeDefinition() == type || t.BaseType == type);
-                });
+                .Where(t => t.BaseType != null
+                            && t.BaseType.IsGenericType
+                            && (t.BaseType.GetGenericTypeDefinition() == type || t.BaseType == type));
             return types;
         }
 
@@ -119,6 +117,12 @@ namespace BarterService.DataAccess.Common
                 : base.ValidateEntity(entityEntry, items);
         }
 
-        public bool UseStoredProcedures { get; set; }
+        public IEnumerable<TResult> ExecuteProcedure<TResult>(IStoredProcedure<TResult> procedure)
+        {
+            var result = Database.ExecuteStoredProcedure(procedure);
+            return result;
+        }
+
+        public bool UseCrudProcedures { get; private set; }
     }
 }

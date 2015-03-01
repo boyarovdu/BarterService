@@ -1,9 +1,6 @@
-﻿using System;
-using System.Linq;
-using BarterService.Common;
+﻿using BarterService.Common;
 using BarterService.DataAccess.Common;
 using BasrterService.Model.Objects;
-using Initialization;
 using Initialization.Common;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -43,11 +40,19 @@ namespace BarterServiceTests
         }
 
         [TestMethod]
-        public void Tes3()
+        public void Test3()
         {
             var repo = Container.Resolve<IEntityRepository<Deal>>();
 
             repo.Insert(new Deal());
+        }
+
+        [TestMethod]
+        public void Test4()
+        {
+            var context = Container.Resolve<IContext>();
+
+            
         }
     }
 }

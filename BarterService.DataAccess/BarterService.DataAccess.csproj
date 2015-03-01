@@ -62,6 +62,7 @@
     <Compile Include="Common\IUnitOfWork.cs" />
     <Compile Include="Configuration\ContextConfigurator.cs" />
     <Compile Include="Configuration\IContextConfigurator.cs" />
+    <Compile Include="Extensions\DatabaseExtensions.cs" />
     <Compile Include="Mapping\AccountMap.cs" />
     <Compile Include="Mapping\DealMap.cs" />
     <Compile Include="Common\Repository.cs" />
