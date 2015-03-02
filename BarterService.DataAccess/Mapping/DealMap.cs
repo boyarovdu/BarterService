@@ -7,13 +7,10 @@ namespace BarterService.DataAccess.Mapping
     {
         public DealMap()
         {
-            HasKey(t => t.Id);
-            //Property(t => t.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            //Property(t => t.Title).IsRequired();
-            //Property(t => t.Author).IsRequired();
-            //Property(t => t.ISBN).IsRequired();
-            //Property(t => t.Published).IsRequired();
-            //ToTable("Books");
+            HasRequired(d => d.Consumer);
+            HasRequired(d => d.Seller);
+            HasRequired(d => d.Weal);
+            Property(d => d.Date).IsRequired();
         }
     }
 }

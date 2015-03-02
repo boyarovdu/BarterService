@@ -1,4 +1,5 @@
-﻿using BasrterService.Model.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using BasrterService.Model.Common;
 
 namespace BasrterService.Model.Objects
 {

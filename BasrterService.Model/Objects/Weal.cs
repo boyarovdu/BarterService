@@ -1,4 +1,5 @@
-﻿using BasrterService.Model.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using BasrterService.Model.Common;
 
 namespace BasrterService.Model.Objects
 {
@@ -6,10 +7,12 @@ namespace BasrterService.Model.Objects
     {
         public string Description { get; set; }
 
+        [Required]
         public string Title { get; set; }
 
         public decimal Cost { get; set; }
 
+        [Required]
         public User Owner { get; set; }
     }
 }

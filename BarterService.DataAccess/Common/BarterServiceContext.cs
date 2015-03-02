@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
@@ -13,19 +14,27 @@ using BarterService.DataAccess.Validation.Common;
 using BasrterService.Model.Common;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data.Configuration;
+using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 
 namespace BarterService.DataAccess.Common
 {
     public class BarterServiceContext : DbContext, IContext
     {
-        public BarterServiceContext([Dependency]IConfigurationSource сonfigSource)
+        private IConfigurationSource _configSource;
+
+        public IConfigurationSource ConfigSource
         {
-            var settings = DatabaseSettings.GetDatabaseSettings(сonfigSource);
-            Database.Connection.ConnectionString = settings.DefaultConnectionString();
-            Configuration.LazyLoadingEnabled = true;
+            get { return _configSource ?? (_configSource = ServiceLocator.Current.GetInstance<IUnityContainer>().Resolve<IConfigurationSource>()); }
         }
 
+        public BarterServiceContext()
+        {
+            //var settings = DatabaseSettings.GetDatabaseSettings(ConfigSource);
+            Database.Connection.ConnectionString =
+                @"data source=.\SQLEXPRESS;initial catalog=BarterService;      integrated security=True;multipleactiveresultsets=true;App=EntityFramework";//settings.DefaultConnectionString();
+            Configuration.LazyLoadingEnabled = true;
+        }
 
         public ObjectContext Core
         {
@@ -60,9 +69,13 @@ namespace BarterService.DataAccess.Common
         private static void OverrideConventions(DbModelBuilder modelBuilder)
         {
             // Conventions override
-            //modelBuilder.Properties()
-            //    .Where(p => p.Name == "Id")
-            //    .Configure(p => p.IsKey());
+            modelBuilder.Properties()
+                .Where(p => p.Name == "Id")
+                .Configure(p =>
+                {
+                    p.IsKey();
+                    p.HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+                });
         }
 
         private void MapEntities(DbModelBuilder modelBuilder)

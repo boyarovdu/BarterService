@@ -72,11 +72,26 @@
     <Compile Include="Common\Transactions\TransactionManager.cs" />
     <Compile Include="Extensions\DatabaseExtensions.cs" />
     <Compile Include="Extensions\DatabaseSettingsExtensions.cs" />
-    <Compile Include="Mapping\AccountMap.cs" />
+    <Compile Include="Mapping\BarterDealMap.cs" />
+    <Compile Include="Mapping\CommentMap.cs" />
     <Compile Include="Mapping\DealMap.cs" />
     <Compile Include="Common\Repository.cs" />
     <Compile Include="Common\IEntityRepository.cs" />
     <Compile Include="Common\IContext.cs" />
+    <Compile Include="Mapping\FeedbackDeal.cs" />
+    <Compile Include="Mapping\GoodsMap.cs" />
+    <Compile Include="Mapping\PurchaseMap.cs" />
+    <Compile Include="Mapping\RatingMap.cs" />
+    <Compile Include="Mapping\ScoreAccountMap.cs" />
+    <Compile Include="Mapping\ScoreTransactionMap.cs" />
+    <Compile Include="Mapping\ServiceMap.cs" />
+    <Compile Include="Mapping\UserMap.cs" />
+    <Compile Include="Mapping\WealMap.cs" />
+    <Compile Include="Migrations\201503022234558_Migration1.cs" />
+    <Compile Include="Migrations\201503022234558_Migration1.Designer.cs">
+      <DependentUpon>201503022234558_Migration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Procedures\Common\DbProcedure.cs" />
     <Compile Include="Procedures\Common\DbProcedureParameter.cs" />
     <Compile Include="Procedures\Projections\UserDetailsProjection.cs" />
@@ -103,7 +118,11 @@
       <Name>BasrterService.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201503022234558_Migration1.resx">
+      <DependentUpon>201503022234558_Migration1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

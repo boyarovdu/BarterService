@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\BaseEntity.cs" />
+    <Compile Include="Objects\Comment.cs" />
     <Compile Include="Objects\Feedback.cs" />
     <Compile Include="Objects\Rating.cs" />
     <Compile Include="Objects\ScoreAccount.cs" />
@@ -51,13 +52,8 @@
     <Compile Include="Objects\Service.cs" />
     <Compile Include="Objects\ScoreTransaction.cs" />
     <Compile Include="Objects\User.cs" />
-    <Compile Include="Objects\UserFeedback.cs" />
     <Compile Include="Objects\Weal.cs" />
-    <Compile Include="Objects\WealFeedback.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

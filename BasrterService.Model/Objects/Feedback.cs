@@ -1,4 +1,5 @@
-﻿using BasrterService.Model.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using BasrterService.Model.Common;
 
 namespace BasrterService.Model.Objects
 {
@@ -7,5 +8,7 @@ namespace BasrterService.Model.Objects
         public string Content { get; set; }
 
         public int Rating { get; set; }
+
+        public Deal Deal { get; set; }
     }
 }
