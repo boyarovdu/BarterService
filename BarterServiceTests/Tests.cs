@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using BarterService.Common;
 using BarterService.DataAccess.Common;
 using BarterService.DataAccess.Common.Transactions;
@@ -76,6 +77,17 @@ namespace BarterServiceTests
                 Debug.WriteLine(user.FirstName);
             }
             tranManager.Commit();
+        }
+
+        [TestMethod]
+        public void Test6()
+        {
+            var context = Container.Resolve<IContext>();
+            var result = context.ExecuteScalar(new SpUsersGetDetails { UserId = 1 });
+
+            Debug.WriteLine(result.FName);
+            Debug.WriteLine(result.LName);
+            Debug.WriteLine(result.UserId);
         }
     }
 }

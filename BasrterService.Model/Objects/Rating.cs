@@ -2,10 +2,12 @@
 
 namespace BasrterService.Model.Objects
 {
-    public class Account : BaseEntity
+    public class Rating : BaseEntity
     {
-        public decimal Ammount { get; set; }
-
         public User User { get; set; }
+
+        public int Stars { get; set; }
+
+        public long DealsCount { get; set; }
     }
 }

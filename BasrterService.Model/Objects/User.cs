@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BasrterService.Model.Common;
+﻿using BasrterService.Model.Common;
 
 namespace BasrterService.Model.Objects
 {
@@ -11,13 +10,6 @@ namespace BasrterService.Model.Objects
 
         public string Email { get; set; }
 
-        public Account Account { get; set; }
-
-        public void Buy(Weal weal)
-        {
-            // this must be transaction
-            this.Account.Ammount -= weal.Cost;
-            weal.Owner.Account.Ammount += weal.Cost;
-        }
+        public ScoreAccount ScoreAccount { get; set; }
     }
 }

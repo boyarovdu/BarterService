@@ -3,7 +3,7 @@ using BasrterService.Model.Objects;
 
 namespace BarterService.DataAccess.Mapping
 {
-    public class AccountMap : EntityTypeConfiguration<Account>
+    public class AccountMap : EntityTypeConfiguration<ScoreAccount>
     {
         public AccountMap()
         {

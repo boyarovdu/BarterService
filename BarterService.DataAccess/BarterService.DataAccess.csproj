@@ -79,7 +79,9 @@
     <Compile Include="Common\IContext.cs" />
     <Compile Include="Procedures\Common\DbProcedure.cs" />
     <Compile Include="Procedures\Common\DbProcedureParameter.cs" />
+    <Compile Include="Procedures\Projections\UserDetailsProjection.cs" />
     <Compile Include="Procedures\SpGetUsersByName.cs" />
+    <Compile Include="Procedures\SpUsersGetDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\UnitOfWork.cs" />
     <Compile Include="Validation\DealValidator.cs" />
