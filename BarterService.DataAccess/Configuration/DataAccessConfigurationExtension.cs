@@ -7,10 +7,7 @@ namespace BarterService.DataAccess.Configuration
     {
         protected override void Initialize()
         {
-            Container.AddNewExtension<ContextConfigurationExtension>()
-                .Configure<IContextConfigurator>()
-                .UseStoredProcedures = true;
-
+            Container.RegisterType<IContext, BarterServiceContext>();
             Container.RegisterType<IUnitOfWork, UnitOfWork>();
             Container.RegisterType(typeof(IEntityRepository<>), typeof(Repository<>));
         }

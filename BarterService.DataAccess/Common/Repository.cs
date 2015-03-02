@@ -43,29 +43,8 @@ namespace BarterService.DataAccess.Common
 
         public void Delete(T entity)
         {
-            //try
-            //{
-            //    if (entity == null)
-            //    {
-            //        throw new ArgumentNullException("entity");
-            //    }
-
-                Entities.Remove(entity);
-                _context.Save();
-            //}
-            //catch (DbEntityValidationException dbEx)
-            //{
-
-            //    foreach (var validationErrors in dbEx.EntityValidationErrors)
-            //    {
-            //        foreach (var validationError in validationErrors.ValidationErrors)
-            //        {
-            //            _errorMessage += Environment.NewLine + string.Format("Property: {0} Error: {1}",
-            //            validationError.PropertyName, validationError.ErrorMessage);
-            //        }
-            //    }
-            //    throw new Exception(_errorMessage, dbEx);
-            //}
+            Entities.Remove(entity);
+            _context.Save();
         }
     }
 }

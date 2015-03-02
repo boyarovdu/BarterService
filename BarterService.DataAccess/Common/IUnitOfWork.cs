@@ -6,6 +6,6 @@ namespace BarterService.DataAccess.Common
     {
         void Save();
 
-        Repository<T> Repository<T>() where T : BaseEntity;
+        IEntityRepository<T> Repository<T>() where T : BaseEntity;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using BarterService.DataAccess.Extensions;
 using BasrterService.Model.Common;
 
 namespace BarterService.DataAccess.Common
@@ -11,6 +12,10 @@ namespace BarterService.DataAccess.Common
 
         void Save();
 
-        IEnumerable<T> ManagedEntites<T>();
+        IEnumerable<TResult> ExecuteEnumerable<TResult>(IStoredProcedure<TResult> procedure);
+
+        TResult ExecuteScalar<TResult>(IStoredProcedure<TResult> procedure);
+
+        int ExecuteNonQuery(IStoredProcedure<int> procedure);
     }
 }

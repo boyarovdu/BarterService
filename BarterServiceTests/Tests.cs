@@ -1,5 +1,6 @@
 ﻿using BarterService.Common;
 using BarterService.DataAccess.Common;
+using BarterService.DataAccess.Procedures;
 using BasrterService.Model.Objects;
 using Initialization.Common;
 using Microsoft.Practices.ServiceLocation;
@@ -52,7 +53,7 @@ namespace BarterServiceTests
         {
             var context = Container.Resolve<IContext>();
 
-            
+            context.ExecuteEnumerable(new UsersLike { NameLike = "Da" });
         }
     }
 }

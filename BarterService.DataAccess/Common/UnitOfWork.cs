@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BasrterService.Model.Common;
+using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 
 namespace BarterService.DataAccess.Common
@@ -39,7 +40,7 @@ namespace BarterService.DataAccess.Common
             _disposed = true;
         }
 
-        public Repository<T> Repository<T>() where T : BaseEntity
+        public IEntityRepository<T> Repository<T>() where T : BaseEntity
         {
             if (_repositories == null)
             {
@@ -50,11 +51,11 @@ namespace BarterService.DataAccess.Common
 
             if (!_repositories.ContainsKey(type))
             {
-                var repositoryType = typeof(Repository<>);
-                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), _context);
+                var repositoryInstance = ServiceLocator.Current.GetInstance<IUnityContainer>()
+                    .Resolve<IEntityRepository<T>>();
                 _repositories.Add(type, repositoryInstance);
             }
-            return (Repository<T>)_repositories[type];
+            return (IEntityRepository<T>)_repositories[type];
         }
     }
 }

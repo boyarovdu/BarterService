@@ -17,18 +17,13 @@ namespace BarterService.DataAccess.Common
     {
         public const string ConnectionString = "name=BarterService.DbConnection.Dev";
 
-        public BarterServiceContext(bool useCrudProcedures)
+        public BarterServiceContext()
             : base(ConnectionString)
         {
-            UseCrudProcedures = useCrudProcedures;
             Configuration.LazyLoadingEnabled = true;
             Database.Initialize(false);
         }
 
-        public BarterServiceContext()
-            : this(false)
-        {
-        }
 
         public ObjectContext Core
         {
@@ -55,22 +50,11 @@ namespace BarterService.DataAccess.Common
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             OverrideConventions(modelBuilder);
-
             MapEntities(modelBuilder);
-
-            if (UseCrudProcedures)
-            {
-                //modelBuilder.
-                //.Entity<Deal>()
-                //.MapToStoredProcedures(c => c.Delete(dc => dc.HasName("delate_deal"))
-                //    .Insert(ic => ic.HasName("insert_deal"))
-                //    .Update(uc => uc.HasName("update_deal")));
-            }
-
-
             base.OnModelCreating(modelBuilder);
         }
 
+        // ReSharper disable once UnusedParameter.Local
         private static void OverrideConventions(DbModelBuilder modelBuilder)
         {
             // Conventions override
@@ -117,12 +101,22 @@ namespace BarterService.DataAccess.Common
                 : base.ValidateEntity(entityEntry, items);
         }
 
-        public IEnumerable<TResult> ExecuteProcedure<TResult>(IStoredProcedure<TResult> procedure)
+        public IEnumerable<TResult> ExecuteEnumerable<TResult>(IStoredProcedure<TResult> procedure)
         {
             var result = Database.ExecuteStoredProcedure(procedure);
             return result;
         }
 
-        public bool UseCrudProcedures { get; private set; }
+        public TResult ExecuteScalar<TResult>(IStoredProcedure<TResult> procedure)
+        {
+            var result = Database.ExecuteStoredProcedure(procedure);
+            return result.FirstOrDefault();
+        }
+
+        public int ExecuteNonQuery(IStoredProcedure<int> procedure)
+        {
+            Database.ExecuteStoredProcedure(procedure);
+            return 0;
+        }
     }
 }

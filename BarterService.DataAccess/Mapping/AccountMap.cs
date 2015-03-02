@@ -8,6 +8,8 @@ namespace BarterService.DataAccess.Mapping
         public AccountMap()
         {
             HasRequired(a => a.User);
+
+            //MapToStoredProcedures();
         }
     }
 }
