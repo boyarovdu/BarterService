@@ -1,4 +1,5 @@
 ﻿using BarterService.DataAccess.Common;
+using BarterService.DataAccess.Common.Transactions;
 using Microsoft.Practices.Unity;
 
 namespace BarterService.DataAccess.Configuration
@@ -8,6 +9,7 @@ namespace BarterService.DataAccess.Configuration
         protected override void Initialize()
         {
             Container.RegisterType<IContext, BarterServiceContext>();
+            Container.RegisterType<ITransactionManager, TransactionManager>();
             Container.RegisterType<IUnitOfWork, UnitOfWork>();
             Container.RegisterType(typeof(IEntityRepository<>), typeof(Repository<>));
         }

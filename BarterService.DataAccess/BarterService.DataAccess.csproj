@@ -59,7 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\BarterServiceContext.cs" />
+    <Compile Include="Common\Transactions\ITransactionManager.cs" />
     <Compile Include="Common\IUnitOfWork.cs" />
+    <Compile Include="Common\Transactions\TransactionManager.cs" />
     <Compile Include="Extensions\DatabaseExtensions.cs" />
     <Compile Include="Mapping\AccountMap.cs" />
     <Compile Include="Mapping\DealMap.cs" />
@@ -68,7 +70,7 @@
     <Compile Include="Common\IContext.cs" />
     <Compile Include="Procedures\Common\DbProcedure.cs" />
     <Compile Include="Procedures\Common\DbProcedureParameter.cs" />
-    <Compile Include="Procedures\UsersLike.cs" />
+    <Compile Include="Procedures\SpGetUsersByName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\UnitOfWork.cs" />
     <Compile Include="Validation\DealValidator.cs" />

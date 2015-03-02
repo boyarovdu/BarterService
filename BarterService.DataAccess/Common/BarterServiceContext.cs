@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
@@ -7,13 +8,14 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
+using BarterService.DataAccess.Common.Transactions;
 using BarterService.DataAccess.Extensions;
 using BarterService.DataAccess.Validation.Common;
 using BasrterService.Model.Common;
 
 namespace BarterService.DataAccess.Common
 {
-    public class BarterServiceContext : DbContext, IContext
+    public class BarterServiceContext : DbContext, IContext, ITransactionManager
     {
         public const string ConnectionString = "name=BarterService.DbConnection.Dev";
 
@@ -117,6 +119,26 @@ namespace BarterService.DataAccess.Common
         {
             Database.ExecuteStoredProcedure(procedure);
             return 0;
+        }
+
+        public void BeginTransaction(IsolationLevel isoLevel)
+        {
+            Database.BeginTransaction(isoLevel);
+        }
+
+        public void BeginTransaction()
+        {
+            Database.BeginTransaction();
+        }
+
+        public void Rollback()
+        {
+            Database.CurrentTransaction.Rollback();
+        }
+
+        public void Commit()
+        {
+            Database.CurrentTransaction.Commit();
         }
     }
 }

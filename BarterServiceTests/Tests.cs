@@ -1,5 +1,7 @@
-﻿using BarterService.Common;
+﻿using System.Diagnostics;
+using BarterService.Common;
 using BarterService.DataAccess.Common;
+using BarterService.DataAccess.Common.Transactions;
 using BarterService.DataAccess.Procedures;
 using BasrterService.Model.Objects;
 using Initialization.Common;
@@ -44,7 +46,6 @@ namespace BarterServiceTests
         public void Test3()
         {
             var repo = Container.Resolve<IEntityRepository<Deal>>();
-
             repo.Insert(new Deal());
         }
 
@@ -52,8 +53,29 @@ namespace BarterServiceTests
         public void Test4()
         {
             var context = Container.Resolve<IContext>();
+            var result = context.ExecuteEnumerable(new SpGetUsersByName { Name = "" });
 
-            context.ExecuteEnumerable(new UsersLike { NameLike = "Da" });
+            foreach (var user in result)
+            {
+                Debug.WriteLine(user.FirstName);
+            }
+        }
+
+
+        [TestMethod]
+        public void Test5()
+        {
+            var context = Container.Resolve<IContext>();
+            var tranManager = Container.Resolve<ITransactionManager>();
+
+            tranManager.BeginTransaction();
+            var result = context.ExecuteEnumerable(new SpGetUsersByName { Name = "" });
+
+            foreach (var user in result)
+            {
+                Debug.WriteLine(user.FirstName);
+            }
+            tranManager.Commit();
         }
     }
 }
