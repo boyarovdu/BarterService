@@ -8,7 +8,7 @@ namespace BarterService.DataAccess.Configuration
     {
         protected override void Initialize()
         {
-            Container.RegisterType<IContext, BarterServiceContext>();
+            Container.RegisterType<IContext, BarterServiceContext>(new ContainerControlledLifetimeManager());
             Container.RegisterType<ITransactionManager, TransactionManager>();
             Container.RegisterType<IUnitOfWork, UnitOfWork>();
             Container.RegisterType(typeof(IEntityRepository<>), typeof(Repository<>));

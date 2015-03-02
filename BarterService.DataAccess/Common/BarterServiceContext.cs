@@ -8,22 +8,22 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
-using BarterService.DataAccess.Common.Transactions;
 using BarterService.DataAccess.Extensions;
 using BarterService.DataAccess.Validation.Common;
 using BasrterService.Model.Common;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Data.Configuration;
+using Microsoft.Practices.Unity;
 
 namespace BarterService.DataAccess.Common
 {
-    public class BarterServiceContext : DbContext, IContext, ITransactionManager
+    public class BarterServiceContext : DbContext, IContext
     {
-        public const string ConnectionString = "name=BarterService.DbConnection.Dev";
-
-        public BarterServiceContext()
-            : base(ConnectionString)
+        public BarterServiceContext([Dependency]IConfigurationSource сonfigSource)
         {
+            var settings = DatabaseSettings.GetDatabaseSettings(сonfigSource);
+            Database.Connection.ConnectionString = settings.DefaultConnectionString();
             Configuration.LazyLoadingEnabled = true;
-            Database.Initialize(false);
         }
 
 
