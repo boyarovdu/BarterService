@@ -9,11 +9,11 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
+using BarterService.Common;
 using BarterService.DataAccess.Extensions;
 using BarterService.DataAccess.Validation.Common;
 using BasrterService.Model.Common;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
-using Microsoft.Practices.EnterpriseLibrary.Data.Configuration;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 
@@ -25,14 +25,14 @@ namespace BarterService.DataAccess.Common
 
         public IConfigurationSource ConfigSource
         {
-            get { return _configSource ?? (_configSource = ServiceLocator.Current.GetInstance<IUnityContainer>().Resolve<IConfigurationSource>()); }
+            get { return _configSource ?? (_configSource = ApplicationShell.Container.Resolve<IConfigurationSource>()); }
         }
 
         public BarterServiceContext()
         {
             //var settings = DatabaseSettings.GetDatabaseSettings(ConfigSource);
             Database.Connection.ConnectionString =
-                @"data source=.\SQLEXPRESS;initial catalog=BarterService;      integrated security=True;multipleactiveresultsets=true;App=EntityFramework";//settings.DefaultConnectionString();
+                @"data source=.\SQLEXPRESS;initial catalog=BarterService; integrated security=True;multipleactiveresultsets=true;App=EntityFramework";//settings.DefaultConnectionString();
             Configuration.LazyLoadingEnabled = true;
         }
 

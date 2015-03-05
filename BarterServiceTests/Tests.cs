@@ -19,7 +19,7 @@ namespace BarterServiceTests
 
         public Tests()
         {
-            AppContainer.InitServices(new InitializationContainerExtension());
+            ApplicationShell.InitServices(new InitializationContainerExtension());
             Container = ServiceLocator.Current.GetInstance<IUnityContainer>();
         }
 

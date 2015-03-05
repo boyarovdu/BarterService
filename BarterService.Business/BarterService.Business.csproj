@@ -56,9 +56,9 @@
       <Project>{f98f7f82-c99c-4e4f-9306-d79da9ebed64}</Project>
       <Name>BarterService.DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BasrterService.Model\BasrterService.Model.csproj">
+    <ProjectReference Include="..\BasrterService.Model\BarterService.Model.csproj">
       <Project>{0984d8d7-68f8-43cd-ae80-fc45f462690d}</Project>
-      <Name>BasrterService.Model</Name>
+      <Name>BarterService.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

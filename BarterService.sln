@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.Web", "BarterService\BarterService.Web.csproj", "{035D3ADB-2503-430C-91D5-812A4DB97EDA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasrterService.Model", "BasrterService.Model\BasrterService.Model.csproj", "{0984D8D7-68F8-43CD-AE80-FC45F462690D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.Model", "BasrterService.Model\BarterService.Model.csproj", "{0984D8D7-68F8-43CD-AE80-FC45F462690D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.DataAccess", "BarterService.DataAccess\BarterService.DataAccess.csproj", "{F98F7F82-C99C-4E4F-9306-D79DA9EBED64}"
 EndProject
@@ -15,7 +13,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterServiceTests", "Barte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.Common", "BarterService.Common\BarterService.Common.csproj", "{A90D165C-AA3B-4A0E-ACB4-EC9B0712D9C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.Initialization", "Initialization\BarterService.Initialization.csproj", "{5C183FBD-DD6B-47CA-BAD3-04BD8FEB47AE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Persistance", "02-Persistance", "{621FE994-0A9A-4B9D-B459-3AAE14E123EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Business", "03-Business", "{1C1A0F4A-4EE7-469E-8C96-AF0D03C7D8FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Common", "01-Common", "{9B5112D7-F126-4230-A004-84BB78CA5E78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Presentation", "04-Presentation", "{04D2757C-62AD-40CA-B9F2-6B2E8EB8EC7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.Initialization", "BarterService.Initialization\BarterService.Initialization.csproj", "{5C183FBD-DD6B-47CA-BAD3-04BD8FEB47AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarterService.Web", "BarterService.Web\BarterService.Web.csproj", "{61ABF237-2B7D-4528-9890-126CBE0226F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{035D3ADB-2503-430C-91D5-812A4DB97EDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{035D3ADB-2503-430C-91D5-812A4DB97EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{035D3ADB-2503-430C-91D5-812A4DB97EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{035D3ADB-2503-430C-91D5-812A4DB97EDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0984D8D7-68F8-43CD-AE80-FC45F462690D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0984D8D7-68F8-43CD-AE80-FC45F462690D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0984D8D7-68F8-43CD-AE80-FC45F462690D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,9 +55,21 @@ Global
 		{5C183FBD-DD6B-47CA-BAD3-04BD8FEB47AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C183FBD-DD6B-47CA-BAD3-04BD8FEB47AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C183FBD-DD6B-47CA-BAD3-04BD8FEB47AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61ABF237-2B7D-4528-9890-126CBE0226F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61ABF237-2B7D-4528-9890-126CBE0226F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61ABF237-2B7D-4528-9890-126CBE0226F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61ABF237-2B7D-4528-9890-126CBE0226F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0984D8D7-68F8-43CD-AE80-FC45F462690D} = {621FE994-0A9A-4B9D-B459-3AAE14E123EA}
+		{F98F7F82-C99C-4E4F-9306-D79DA9EBED64} = {621FE994-0A9A-4B9D-B459-3AAE14E123EA}
+		{3A55503E-6294-4848-A3D1-B12FBA8F99D2} = {1C1A0F4A-4EE7-469E-8C96-AF0D03C7D8FA}
+		{A90D165C-AA3B-4A0E-ACB4-EC9B0712D9C2} = {9B5112D7-F126-4230-A004-84BB78CA5E78}
+		{5C183FBD-DD6B-47CA-BAD3-04BD8FEB47AE} = {1C1A0F4A-4EE7-469E-8C96-AF0D03C7D8FA}
+		{61ABF237-2B7D-4528-9890-126CBE0226F9} = {04D2757C-62AD-40CA-B9F2-6B2E8EB8EC7E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45

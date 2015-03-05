@@ -55,7 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppContainer.cs" />
+    <Compile Include="ApplicationShell.cs" />
     <Compile Include="Configuration\AppFileConfigurationSource.cs" />
     <Compile Include="Configuration\ApFileConfigurationSourceElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

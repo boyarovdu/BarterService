@@ -113,9 +113,9 @@
       <Project>{a90d165c-aa3b-4a0e-acb4-ec9b0712d9c2}</Project>
       <Name>BarterService.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BasrterService.Model\BasrterService.Model.csproj">
+    <ProjectReference Include="..\BasrterService.Model\BarterService.Model.csproj">
       <Project>{0984d8d7-68f8-43cd-ae80-fc45f462690d}</Project>
-      <Name>BasrterService.Model</Name>
+      <Name>BarterService.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
